@@ -4,7 +4,6 @@ module.exports = {
     preflight: false,
   },
   mode: "jit",
-  darkMode: "class",
   content: ["./**/*.{ts,tsx}"],
   theme: {},
   plugins: []

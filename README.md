@@ -3,8 +3,9 @@ This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with
 ## TODO
 
 - Readme
-- AxosInstanceProvider
-- Start Machine
+- Support other pictures
+- Option page
+- Open Desktop
 - Release
 
 ## Getting Started
