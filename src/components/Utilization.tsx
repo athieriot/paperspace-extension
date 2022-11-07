@@ -2,16 +2,17 @@ import Skeleton from "@mui/material/Skeleton"
 import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 import dayjs from "dayjs"
-import { useUtilization, UtilizationResponse } from "~queries/machineQueries"
+import { useUtilization } from "~queries/machineQueries"
+import type { UtilizationResponse } from "~types"
 
 interface Props {
     machineId: string
 }
 
 const computeInfo = ({ utilization, storageUtilization }: UtilizationResponse) => {
-  const machineHours = parseFloat(utilization.secondsUsed) / 60 / 60
+  const machineHours = utilization.secondsUsed / 60 / 60
   const machinePrice = utilization.monthlyRate ? parseFloat(utilization.monthlyRate) : (parseFloat(utilization.hourlyRate) * machineHours)
-  const storagePrice = storageUtilization.monthlyRate ? parseFloat(storageUtilization.monthlyRate) : (parseFloat(storageUtilization.hourlyRate) * parseFloat(storageUtilization.secondsUsed) / 60 / 60)
+  const storagePrice = storageUtilization ? storageUtilization.monthlyRate ? parseFloat(storageUtilization.monthlyRate) : (parseFloat(storageUtilization.hourlyRate) * storageUtilization.secondsUsed / 60 / 60) : 0
 
   return {
     time: machineHours,

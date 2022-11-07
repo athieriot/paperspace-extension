@@ -3,18 +3,17 @@ import type { AxiosInstance } from 'axios'
 import type dayjs from 'dayjs'
 import { useContext } from 'react'
 import { PaperspaceInstanceContext } from '~PaperspaceInstanceProvider'
+import type { Machine, UtilizationResponse } from '~types'
 
 //7a8a0b83cb4eefc4180b99d42e45a5
 
 /**
  * List
  */
-const fetchMachines = async (instance: AxiosInstance) => instance.get('/machines/getMachines').then(response => response.data)
-
 export const useMachines = () => {
   const instance = useContext(PaperspaceInstanceContext)
 
-  return useQuery<Machine[]>(['machines'], () => fetchMachines(instance), {
+  return useQuery<Machine[]>(['machines'], () => instance.get('/machines/getMachines').then(response => response.data), {
     // Refetch the data every 5 seconds
     refetchInterval: 5 * 1000,
   })
@@ -23,12 +22,6 @@ export const useMachines = () => {
 /**
 * Utilization
 */
-
-export interface UtilizationResponse {
-  machineId: string
-  utilization: Utilization
-  storageUtilization?: Utilization
-}
 
 const fetchUtilization = async (machineId: string, billingMonth: dayjs.Dayjs, instance: AxiosInstance) => {
     const params = {

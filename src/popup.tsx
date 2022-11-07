@@ -22,7 +22,7 @@ const IndexPopup = () => {
       <Box className="flex-grow">
         <AppBar position="static">
           <Typography variant="h6" component="div" className="p-2">
-            Machines
+            Paperspace Machines
           </Typography>
         </AppBar>
       </Box>
