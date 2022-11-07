@@ -7,10 +7,20 @@ import Box from "@mui/material/Box"
 import AppBar from "@mui/material/AppBar"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
+import {useSnackbar, SnackbarProvider} from 'notistack'
 
-function OptionsIndex() {
+const ConfigurationSaver = () => {
+  const { enqueueSnackbar } = useSnackbar()
   const [paperspaceApiKey, setPaperspaceApiKey] = useStorage<string>("paperspace_api_key")
 
+  const onSave = (apiKey) => {
+    setPaperspaceApiKey(apiKey).then(() => enqueueSnackbar('Saved !', { variant: 'success' }))
+  }
+
+  return <Configuration defaultKey={paperspaceApiKey} onSave={onSave} />
+}
+
+function OptionsIndex() {
   return(
     <StyledEngineProvider injectFirst>
       <CssBaseline />
@@ -24,7 +34,9 @@ function OptionsIndex() {
       </Box>
 
       <Container className="pt-4 flex justify-center">
-        <Configuration defaultKey={paperspaceApiKey} onSave={setPaperspaceApiKey} />
+        <SnackbarProvider maxSnack={3}>
+          <ConfigurationSaver />
+        </SnackbarProvider>
       </Container>
     </StyledEngineProvider>
   )

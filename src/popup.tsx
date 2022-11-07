@@ -11,6 +11,7 @@ import AppBar from '@mui/material/AppBar'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import PaperspaceInstanceProvider from '~PaperspaceInstanceProvider'
+import { SnackbarProvider } from 'notistack';
 
 const IndexPopup = () => {
   const queryClient = new QueryClient()
@@ -28,11 +29,13 @@ const IndexPopup = () => {
       </Box>
 
       <Container className="pt-4 w-80 h-96 bg-slate-100 flex justify-center">
-        <QueryClientProvider client={queryClient}>
-          <PaperspaceInstanceProvider>
-              <Machines />
-          </PaperspaceInstanceProvider>
-        </QueryClientProvider>
+        <SnackbarProvider maxSnack={3}>
+          <QueryClientProvider client={queryClient}>
+            <PaperspaceInstanceProvider>
+                <Machines />
+            </PaperspaceInstanceProvider>
+          </QueryClientProvider>
+        </SnackbarProvider>
       </Container>
     </StyledEngineProvider>
   )

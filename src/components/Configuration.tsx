@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { useState } from "react"
+import Link from '@mui/material/Link'
 
 interface Props {
   defaultKey?: string
@@ -20,7 +21,9 @@ const Configuration = ({ defaultKey, onSave }: Props) => {
     return (
       <Card>
         <CardContent>
-          <Typography component="div">Please configure Paperspace extension</Typography>
+          <Typography component="div">
+            Please configure Paperspace extension <Link href="https://console.paperspace.com/tej2amlnm/settings/apikeys" target="_blank">here</Link>
+          </Typography>
           <TextField
             label="Paperspace API Key"
             value={apiKey || ''}

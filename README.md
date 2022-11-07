@@ -1,11 +1,5 @@
 A browser extension to manage your [Paperspace](https://www.paperspace.com/) machines
 
-## TODO
-
-- Support other pictures
-- Badge icon + Background
-- Release
-
 ## Getting Started
 
 First, run the development server:
