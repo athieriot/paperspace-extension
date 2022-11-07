@@ -11,7 +11,11 @@ interface Props {
 }
 
 const Configuration = ({ defaultKey, onSave }: Props) => {
-    const [key, setKey] = useState(defaultKey)
+    const [apiKey, setApiKey] = useState<string>(defaultKey)
+
+    if (defaultKey && !apiKey) {
+      setApiKey(defaultKey)
+    }
 
     return (
       <Card>
@@ -19,10 +23,10 @@ const Configuration = ({ defaultKey, onSave }: Props) => {
           <Typography component="div">Please configure Paperspace extension</Typography>
           <TextField
             label="Paperspace API Key"
-            value={key || ''}
-            onChange={(event) => setKey(event.target.value)}
+            value={apiKey || ''}
+            onChange={(event) => setApiKey(event.target.value)}
           />
-          <Button onClick={() => onSave(key)}>
+          <Button onClick={() => onSave(apiKey)}>
             Save
           </Button>
         </CardContent>

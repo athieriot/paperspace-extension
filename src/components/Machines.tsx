@@ -10,6 +10,7 @@ import Divider from "@mui/material/Divider"
 import { useMemo } from "react"
 import Power from "~components/Power"
 import {getStateProperty, StateProperty } from "~types"
+import Button from "@mui/material/Button"
 
 const MachineCard = ({ machine }) => {
   const stateProperty = useMemo<StateProperty>(() => getStateProperty(machine.state), [machine])
@@ -18,7 +19,7 @@ const MachineCard = ({ machine }) => {
     <Card className={`border-2 border-solid ${stateProperty.borderColor}`}>
       <CardContent>
         <Typography color="text.secondary" gutterBottom>
-          {machine.agentType?.toLowerCase().includes('windows') ? <img src="https://img.icons8.com/ios-glyphs/90/null/windows-client.png"/> : <img src="https://img.icons8.com/ios-filled/100/null/linux.png"/> }
+          {machine.agentType?.toLowerCase().includes('windows') ? <img src="https://img.icons8.com/ios-glyphs/90/null/windows-client.png"/> : machine.agentType }
         </Typography>
         <Typography variant="h5">
           {machine.name}
@@ -35,6 +36,9 @@ const MachineCard = ({ machine }) => {
 
       <CardActions>
         <Power machineId={machine.id} stateProperty={stateProperty} />
+        <Button variant="outlined" className="ml-2" size="small" target="_blank" href={`${process.env.PLASMO_PUBLIC_PAPERSPACE_CONSOLE_URL}/${machine.id}`}>
+          Desktop
+        </Button>
       </CardActions>
     </Card>
   )

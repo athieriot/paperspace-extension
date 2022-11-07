@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PaperspaceInstanceProvider = ({ children }: Props) => {
-    const [paperspaceApiKey, setPaperspaceApiKey] = useStorage<string>("paperspace_api_key")
+  const [paperspaceApiKey, setPaperspaceApiKey] = useStorage<string>("paperspace_api_key")
 
   if (!paperspaceApiKey) {
       return <Configuration onSave={setPaperspaceApiKey} />

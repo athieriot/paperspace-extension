@@ -5,7 +5,7 @@ import {
 import Machines from '~components/Machines'
 import { StyledEngineProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import './popup.css'
+import './style.css'
 import Container from '@mui/material/Container'
 import AppBar from '@mui/material/AppBar'
 import Typography from '@mui/material/Typography'

@@ -1,11 +1,9 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+A browser extension to manage your [Paperspace](https://www.paperspace.com/) machines
 
 ## TODO
 
-- Readme
 - Support other pictures
-- Option page
-- Open Desktop
+- Badge icon + Background
 - Release
 
 ## Getting Started
