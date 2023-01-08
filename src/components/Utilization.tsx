@@ -13,10 +13,12 @@ const computeInfo = ({ utilization, storageUtilization }: UtilizationResponse) =
   const machineHours = utilization.secondsUsed / 60 / 60
   const machinePrice = utilization.monthlyRate ? parseFloat(utilization.monthlyRate) : (parseFloat(utilization.hourlyRate) * machineHours)
   const storagePrice = storageUtilization ? storageUtilization.monthlyRate ? parseFloat(storageUtilization.monthlyRate) : (parseFloat(storageUtilization.hourlyRate) * storageUtilization.secondsUsed / 60 / 60) : 0
+  const taxes = (cost: number) => (cost * 20) / 100
 
   return {
     time: machineHours,
-    price: machinePrice + storagePrice
+    price: (machinePrice + storagePrice),
+    taxes: taxes(machinePrice + storagePrice)
   }
 }
 
@@ -32,7 +34,7 @@ const UtilizationCard = ({ machineId }: Props) => {
       )
   }
 
-  const { time, price } = computeInfo(data)
+  const { time, price, taxes } = computeInfo(data)
 
   return (
     <>
@@ -40,7 +42,7 @@ const UtilizationCard = ({ machineId }: Props) => {
         Usage: <strong>{time.toFixed(0)}h</strong>
       </Typography>
       <Typography variant="body2">
-        Price: <strong>{price.toFixed(2)}$</strong>
+          Price: <strong>{(price + taxes).toFixed(2)}$</strong> <i>(VAT: {taxes.toFixed(2)})$</i>
       </Typography>
     </>
   )
