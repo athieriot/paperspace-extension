@@ -1,5 +1,10 @@
 A browser extension to manage your [Paperspace](https://www.paperspace.com/) machines
 
+## TODO
+
+Link to Paperspace
+Integration with the machine ? Games ? Parsec ?
+
 ## Getting Started
 
 First, run the development server:
